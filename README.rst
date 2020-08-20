@@ -20,7 +20,7 @@ Rating is identified with client IP if the user is not authenticated. User ID is
 Requirements
 ------------
 
-This extension works with CKAN version 2.5 or later.
+This extension works with CKAN version 2.8.5
 
 
 ------------
@@ -34,7 +34,7 @@ To install ckanext-rating:
      . /usr/lib/ckan/default/bin/activate
 
 2. Install the ckanext-rating Python package into your virtual environment::
-     pip install -e git+https://github.com/6aika/ckanext-rating.git#egg=ckanext-rating
+    git clone https://github.com/localidata/ckanext-rating
 
 3. Add ``rating`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
@@ -42,14 +42,47 @@ To install ckanext-rating:
 
 4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
-     sudo service apache2 reload
+     sudo service apache2 restart
 
 5. Initialize database tables used by Rating::
 
-    paster --plugin=ckanext-rating rating init --config=production.ini
+    paster --plugin=ckanext-rating rating init --config=/etc/ckan/default/production.ini
 
 6. If you want to use this extension for ckanext-showcase, install it into your environment by following the instructions at https://github.com/ckan/ckanext-showcase
 
+Uninstall
+------------
+
+To uninstall ckanext-rating:
+
+1. Activate your CKAN virtual environment, for example::
+
+     . /usr/lib/ckan/default/bin/activate
+	 
+2. Go to the extension path
+
+	 cd /usr/lib/ckan/default/src/ckanext-rating
+
+3. Uninstall
+
+	 python setup.py develop --uninstall
+	 
+4. Erase  extension folder
+
+	 rm -r /usr/lib/ckan/default/src/ckanext-rating
+	 
+5. Erase 'rating' from  the plugin list in production.ini
+
+	ckan.plugins = ... rating ...
+	
+				||
+				\/
+	
+	ckan.plugins = ...
+	 
+6. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
+
+     sudo service apache2 restart 
 
 ---------------
 Config Settings
@@ -65,14 +98,3 @@ Optional::
     ckanext.rating.enabled_dataset_types
 
 
-------------------------
-Development Installation
-------------------------
-
-To install ckanext-rating for development, activate your CKAN virtualenv and
-do::
-
-    git clone https://github.com/6aika/ckanext-rating.git
-    cd ckanext-rating
-    python setup.py develop
-    pip install -r dev-requirements.txt
