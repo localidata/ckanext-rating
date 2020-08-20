@@ -73,12 +73,6 @@ To uninstall ckanext-rating:
 	 
 5. Erase 'rating' from  the plugin list in production.ini
 
-	ckan.plugins = ... rating ...
-	
-				||
-				\/
-	
-	ckan.plugins = ...
 	 
 6. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
