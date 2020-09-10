@@ -34,7 +34,15 @@ To install ckanext-rating:
      . /usr/lib/ckan/default/bin/activate
 
 2. Install the ckanext-rating Python package into your virtual environment::
+	
+	cd /usr/lib/ckan/default/src
     git clone https://github.com/localidata/ckanext-rating
+	cd ckanext-rating
+	pip install -r dev-requirements.txt	 
+	python setup.py develop
+	//python setup.py develop --uninstall
+
+	
 
 3. Add ``rating`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
